@@ -1,17 +1,17 @@
 Proyecto... :v
 
-1. CLASS ENFERMEDAD -> moldear la enfermedad...
-2. CLASS PERSONA ->  moldear persona y cambiar su estado de infectado a recuperado...
-3. CLASS COMUNIDAD -> modelar comunidad ... ???
-4. CLASS SIMULADOR -> leer la comunidad 
+1. CLASS ENFERMEDAD -> moldear la enfermedad
+2. CLASS PERSONA ->  moldear persona y cambiar su estado de infectado a recuperado
+3. CLASS COMUNIDAD -> modelar comunidad 
+4. CLASS SIMULADOR -> leer la comunidad, propagar enfermedad, pasos dia a dia 
 
 
-La idea del simulador es que pueda analizar la propagacion de una enfermedad muy contagiosa, durante un mes, 
+La idea del simulador es que pueda analizar la propagacion de una enfermedad contagiosa, durante un mes, 
 en una poblacion de personas que frecuenta una micro diariamente.
-
-leer csv -> crear una comunidad distinta para cada dia, pero frecuente (o sea consideraremos a una media
-de 100 personas que normalmente toman una micro, pero cada dia distintas personas de esa media usan esta, pero de manera frecuente, y asi
-el dia 1 compartiran coersonn la p)
+_________________________________________________________________________________________________________________________________
+PROPAGACION:
+Crear una comunidad distinta para cada dia, pero frecuente (o sea consideraremos a una media
+de 100 personas que normalmente toman una micro, pero cada dia distintas personas de esa media usan esta, pero de manera frecuente, y asi el dia 1 compartiran coerson la persona infectada)
 
 EJEMPLO: 
 
@@ -27,5 +27,15 @@ EJEMPLO:
     comunidad dia 30 [p65, p9, p33, p43, p66,p 5, p20, p30, p100, p98, p1]
 
     -> Comparatiba de estados dia 1 - dia 30
+___________________________________________________________________________________________________________________________________
+...
+___________________________________________________________________________________________________________________________________
+INTERFAZ GRAFICA:
+Ventana 
 
-    -> Resultados cantidad de personas contagiadas, y recuperadas
+
+
+
+
+
+
