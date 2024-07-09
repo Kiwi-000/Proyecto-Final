@@ -31,10 +31,28 @@ ________________________________________________________________________________
 ...
 ___________________________________________________________________________________________________________________________________
 INTERFAZ GRAFICA:
-Ventana 
+Ventana con dos botones y dos espacios [] en el primer espacio mostrara el avance de los dias y la cantidad de personas en estado suceptible, infectado o recuperado; en el segundo espacio estaran los resultados finales del análisis .
 
+- boton 1: "Siguiente día" -> Mostrar dia siguiente desde [dia 1- dia30]
+- boton 2: "Resultados" -> Mostrar % contagiados, tasa de transmicion y tasa de recuperados.
 
+    Ej:  _________________________________________________________________________
+        |                                                                         |                    
+        |      S I M U L A D O R   P R O P A G A C I O N  E N F E R M E D A D     |
+        |-------------------------------------------------------------------------|
+        |           D I A 1 :              |                                      |
+        |                                  |    % CONTAGIOS =                     |
+        |        Suceptibles = 99          |                                      |
+        |        Infectados = 1            |    TASA DE TRANSMICION =             |                     
+        |        Recuperados = 0           |                                      |
+        |                                  |    TASA DE RECUPERADOS =             |
+        |-------------------------------------------------------------------------|
+        |                                  |                                      |
+        |         [SIGUIENTE DIA]          |       [RESULTADOS DE ANALISIS]       |
+        |                                  |                                      |
+        |__________________________________|______________________________________|
 
+___________________________________________________________________________________________________________________________________
 
 
 
