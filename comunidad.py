@@ -1,21 +1,23 @@
 import random
 import pandas as pd
+from persona import Persona
 
 class Comunidad:
-    def __init__(self, num_persona, enfermedad, probabilidad_conexion):
-        self.num_persona = num_persona
+    def __init__(self, enfermedad):
+        self.personas = []
         self.enfermedad = enfermedad
-        self.probabilidad_conexion= probabilidad_conexion
 
-    #generar numero de personas dentro de una comunidad, deberias ser de 7 a 30 por dia 
+    def leer_personas(self, csv_file):
+        df = pd.read_csv(csv_file)
+        for i, row in df.iterrows():
+            persona = Persona(i, row['nombre'], row['apellido'])
+            self.personas.append(persona)
 
-    #def crear_persona(self):
-        #df_nombres = pd.read_csv("personas.csv")
-        #persona = []
-        #for i in range(self.num_persona):
-            #fila = df_nombres.sample()
-            #nombre = fila['nombre'].values[0]
-            #apellido = fila['apellido'].values[0]
-            #persona.append(Persona(i, nombre, apellido, self))
-        #return persona
+    def infectar_aleatoriamente(self, num_infectados):
+        for _ in range(num_infectados):
+            persona = random.choice(self.personas)
+            persona.infectar(self.enfermedad)
+
+    def crear_comunidad_dia(self, num_personas):
+        return random.sample(self.personas, num_personas)
 
