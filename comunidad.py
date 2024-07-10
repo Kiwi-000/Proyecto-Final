@@ -3,8 +3,9 @@ import pandas as pd
 from persona import Persona
 
 class Comunidad:
-    def __init__(self, enfermedad):
+    def __init__(self,personas,num_personas, enfermedad):
         self.personas = []
+        self.num_personas = num_personas
         self.enfermedad = enfermedad
 
     def leer_personas(self, csv_file):
