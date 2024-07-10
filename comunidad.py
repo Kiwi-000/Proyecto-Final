@@ -13,8 +13,8 @@ class Comunidad:
             persona = Persona(i, row['nombre'], row['apellido'])
             self.personas.append(persona)
 
-    def infectar_aleatoriamente(self, num_infectados):
-        for _ in range(num_infectados):
+    def infectar_aleatoriamente(self, num_personas):
+        for _ in range(num_personas):
             persona = random.choice(self.personas)
             persona.infectar(self.enfermedad)
 
