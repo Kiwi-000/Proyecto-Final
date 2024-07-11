@@ -75,8 +75,4 @@ class Simulador:
         recuperados_totales = sum(len([p for p in comunidad if p.estado == 's']) for comunidad in self.comunidad)
         return recuperados_totales / total_personas
     
-    def calcular_resultados(self):
-        total_personas = len(self.comunidades[0])
-        infectados_totales = sum(len([p for p in comunidad if p.estado == 'i']) for comunidad in self.comunidades)
-        recuperados_totales = sum(len([p for p in comunidad if p.estado == 'r']) for comunidad in self.comunidades)
-        return infectados_totales / total_personas
+
