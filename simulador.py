@@ -1,26 +1,22 @@
 import random 
-import pandas as ad
-from enfermedad import Enfermedad
-from persona import Persona
 from comunidad import Comunidad
 
 class Simulador:
-    def __init__(self, num_dias, num_personas, infeccion_probable, promedio_pasos, tasa_recuperacion):
+    def __init__(self, num_dias, enfermedad):
         self.num_dias = num_dias 
-        self.enfermedad = Enfermedad(infeccion_probable, promedio_pasos, tasa_recuperacion)  
-        self.comunidad = Comunidad(num_personas, self.enfermedad) 
+        self.comunidad = Comunidad(enfermedad) 
         self.resultados = [] 
 
-    def ejecutar_simulacion(self, csv_file):
-        comunidad_total = Comunidad(self.enfermedad)
-        comunidad_total.leer_personas(csv_file)
-        comunidad_total.infectar_aleatoriamente()
+    #iniciar la simulacion de propagacion 
+    def ejecutar_simulacion(self):
+        
+        for dia in range(1, self.num_dias):
+            comunidad_dia = self.comunidad.crear_comunidad_dia(100)
 
-        for dia in range(1, self.num_dias + 1):
-            comunidad_dia = comunidad_total.crear_comunidad_dia(random.randint(7, 30))
-            self.propagacion_enfermedad(comunidad_dia)
-            self.guardar_comunidad(dia, comunidad_dia)
-            self.comunidades.append(comunidad_dia)
+            for persona in comunidad_dia:
+                print(persona.id)
+
+            print("")
 
     def propagacion_enfermedad(self, comunidad):
         for persona in comunidad:
@@ -40,6 +36,4 @@ class Simulador:
         total_personas = len(self.comunidades[0])
         infectados_totales = sum(len([p for p in comunidad if p.estado == 'i']) for comunidad in self.comunidades)
         recuperados_totales = sum(len([p for p in comunidad if p.estado == 'r']) for comunidad in self.comunidades)
-        tasa_transmision = infectados_totales / (total_personas * self.num_dias)
-        tasa_recuperacion = recuperados_totales / infectados_totales
-        return infectados_totales / total_personas, tasa_transmision, tasa_recuperacion
+        return infectados_totales / total_personas
