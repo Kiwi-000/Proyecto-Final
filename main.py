@@ -3,14 +3,20 @@ from simulador import Simulador
 from enfermedad import Enfermedad
 
 def main():
-    infeccion_probable= 0.3  
-    tasa_recuperacion = 0.1   
+    num_dias = 30
+    tasa_transmision= 0.3  
+    tasa_recuperacion = 5
 
-    enfermedad = Enfermedad(infeccion_probable, tasa_recuperacion)
-    simulador = Simulador(num_dias=30, enfermedad=enfermedad)
+    #def __init__(self, num_dias, tasa_transmision, promedio_pasos, tasa_recuperacion):
+    covid = Enfermedad(tasa_transmision, tasa_recuperacion)
+
+    simulador = Simulador(num_dias=30, enfermedad=covid)
+
+    simulador.ejecutar_simulacion()
 
 if __name__ == "__main__":
     main()
+  
 
 
 
