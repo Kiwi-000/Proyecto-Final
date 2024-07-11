@@ -1,14 +1,14 @@
 import random
 
 class Persona:
-    def __init__(self, id, nombre, apellido, comunidad):
+    def __init__(self, id, nombre, apellido, estado):
         self.id = id
         self.nombre = nombre
         self.apellido = apellido
-        self.comunidad = comunidad
-        self.estado = 's'  # susceptible (s), infectado (i), recuperado (r)
+        self.estado = estado
+        self.contador = 0
 
-    # Métodos get para los atributos
+    # get
     def get_id(self):
         return self.id
 
@@ -18,14 +18,8 @@ class Persona:
     def get_apellido(self):
         return self.apellido
 
-    def get_comunidad(self):
-        return self.comunidad
-
     def get_estado(self):
         return self.estado
-
-    def get_enfermedad(self):
-        return self.enfermedad
 
     # Cambia el estado a infectado
     def infectar(self, enfermedad):
@@ -35,6 +29,5 @@ class Persona:
 
     # Cambia el estado a recuperado
     def recuperar(self):
-        if self.estado == 'i' and random.random() < self.enfermedad.tasa_recuperacion:
             self.estado = 'r'
             self.enfermedad = None
