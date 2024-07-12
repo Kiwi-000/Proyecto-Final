@@ -21,7 +21,11 @@ class Persona:
     def get_estado(self):
         return self.estado
 
-    # Cambia el estado a infectado
+#________________________________________________________________________________________________________________________-
+
+    # Manipular estado de las personas
+
+    #Inecta a las personas
     def infectar(self, enfermedad):
         if self.estado == 's':
             self.enfermedad = enfermedad
