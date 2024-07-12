@@ -20,7 +20,7 @@ class Simulador:
             self.recuperar_persona(self.comunidad.personas)
             self.guardar_comunidad(dia, self.comunidad.personas)
 
-            for persona in comunidad_dia:
+            for persona in self.comunidad.personas:
                 #print(persona.id, persona.estado)
                 if persona.estado == "i":
                     persona.contador += 1
@@ -29,19 +29,20 @@ class Simulador:
         print("\n Datos finales de la simulacion\n")
     
         for persona in self.comunidad.personas:
-            print(f"{persona.id} ~ {persona.estado} ~ {persona.contador} ~ {persona.nombre}")
+            print(f"{persona.id} ~ {persona.nombre} ~ {persona.estado} ~ {persona.contador}")
 
-
+        self.calcular_suceptibles_totales()
+        self.calcular_infectados_totales()
+        self.calcular_recuperados_totales()
 
     #Propagar gente 
     def propagacion_enfermedad(self, comunidad_dia):
         for persona in comunidad_dia:
             if persona.estado == 'i':
-                for otra_persona in comunidad_dia:
+                for otra_persona in comunidad_dia:                          
                     if otra_persona.estado == 's' and random.random() < self.enfermedad.tasa_transmision:
                         otra_persona.infectar(self.enfermedad)
     
-
 
     #tratar de recuperar gente 
     def recuperar_persona(self, comunidad):
@@ -59,20 +60,46 @@ class Simulador:
         recuperados = len([p for p in comunidad if p.estado == 'r'])
         print(f"Día {dia}: Suceptibles={suceptibles}, Infectados={infectados}, Recuperados={recuperados}")
 
+#____________________________________________________________________________________________________________________________
+    #Porcentajes finales de toda la comunidad
+
+    # calcular preomedio recuperados en toda la simulasion 
+    def calcular_suceptibles_totales(self):
+        total_personas = len(self.comunidad.personas)
+        suceptibles_totales = 0
+
+        for persona in self.comunidad.personas:
+            if persona.estado == "s":
+                suceptibles_totales += 1
+
+        porcentaje_suceptible = (suceptibles_totales / total_personas) * 100
+        print (f"El {porcentaje_suceptible} % nunca se enfermo")    
 
 
     # calcular promedio infectados en toda la simulacion 
     def calcular_infectados_totales(self):
-        total_personas = len(self.comunidad[0])
-        infectados_totales = sum(len([p for p in comunidad if p.estado == 'i']) for comunidad in self.comunidad)
-        return infectados_totales / total_personas
+        total_personas = len(self.comunidad.personas)
+        infectados_totales = 0
 
+        for persona in self.comunidad.personas:
+            if persona.estado == "i":
+                infectados_totales += 1
+
+        porcentaje_infectados = (infectados_totales / total_personas)* 100
+        print (f"Quedaron enfermos el {porcentaje_infectados} %")
 
 
     # calcular preomedio recuperados en toda la simulasion 
     def calcular_recuperados_totales(self):
-        total_personas = len(self.comunidad[0])
-        recuperados_totales = sum(len([p for p in comunidad if p.estado == 's']) for comunidad in self.comunidad)
-        return recuperados_totales / total_personas
-    
+        total_personas = len(self.comunidad.personas)
+        recuperados_totales = 0
+
+        for persona in self.comunidad.personas:
+            if persona.estado == "r":
+                recuperados_totales += 1
+
+        porcentaje_recuperadas = (recuperados_totales / total_personas)* 100
+        print (f"Está recuperado el {porcentaje_recuperadas}%")    
+
+
 
