@@ -7,7 +7,7 @@ from gi.repository import Gtk, Gio
 
 class SimulacionVirus(Gtk.ApplicationWindow):
     def __init__(self, app):
-        Gtk.ApplicationWindow.__init__(self, application=app, title="Simulación de propagación de un virus")
+        Gtk.ApplicationWindow.__init__(self, application=app, title="Simulación")
         # Inicializar el simulador
         self.tasa_transmision = 0.3
         self.tasa_recuperacion = 5
@@ -23,7 +23,7 @@ class SimulacionVirus(Gtk.ApplicationWindow):
         # Barra de encabezado
         header_bar = Gtk.HeaderBar()
         self.set_titlebar(header_bar)
-        self.set_title("Simulación de propagación de un virus")
+        self.set_title("Simulación")
 
         # Menú popover
         menu = Gio.Menu.new()
@@ -59,7 +59,7 @@ class SimulacionVirus(Gtk.ApplicationWindow):
         left_title = Gtk.Label(label="Proceso de contagio")
         left_box.append(left_title)
 
-        self.dia_label = Gtk.Label(label="Día: 1")
+        self.dia_label = Gtk.Label(label="Día: 0")
         left_box.append(self.dia_label)
 
         self.suceptibles_label = Gtk.Label(label="Suceptibles: 0")
@@ -104,9 +104,9 @@ class SimulacionVirus(Gtk.ApplicationWindow):
 
     def on_boton_siguiente_clicked(self, widget):
         if self.dia_actual < self.simulador.num_dias:
+            self.dia_actual += 1
             self.simulador.ejecutar_simulacion()
             self.actualizar_datos()
-            self.dia_actual += 1
             self.dia_label.set_label(f"Día: {self.dia_actual}")
 #_____________________________________________________________________________________________________________________
 
@@ -125,19 +125,21 @@ class SimulacionVirus(Gtk.ApplicationWindow):
         self.porcentaje_no_recuperados_label.set_label(f"Porcentaje de no recuperados: {porcentaje_infectados:.2f}%")
         self.porcentaje_recuperados_label.set_label(f"Porcentaje de recuperados: {porcentaje_recuperados:.2f}%")
 
+#_______________________________________________________________________________________________________________________________________
+    #Acerca del programa
 
     def show_about_dialog(self, action, param):
         about_dialog = Gtk.AboutDialog()
         about_dialog.set_transient_for(self)
         about_dialog.set_modal(True)
-        about_dialog.set_program_name("Simulador")
+        about_dialog.set_program_name("Simulador_Antonia.Rojas")
         about_dialog.set_version("1.0")
         about_dialog.set_authors(["Antonia Rojas"])
-        about_dialog.set_comments("Esta es una aplicación para simular la propagación de un virus.")
-        about_dialog.run()
-        about_dialog.hide()
+        about_dialog.set_comments("Esta es una aplicación para simular la propagación de una enfermedad.")
+        about_dialog.show()
+        about_dialog.connect("response", lambda dialog, response: dialog.destroy())
 
-
+    #salir del programa
     def on_quit_action(self, action, param):
         self.close()
 
@@ -156,5 +158,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
-
