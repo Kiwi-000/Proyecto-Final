@@ -9,7 +9,6 @@ class Comunidad:
 
     def leer_personas(self, csv_file):
         df = pd.read_csv(csv_file)
-        print("~~~~~~~~~")
 
         personas = []
         for index, row in df.iterrows():
@@ -18,13 +17,6 @@ class Comunidad:
 
         #se escoge una persona al azar para enfermarla
         personas = self.infectar_aleatoriamente(1, personas)
-        print("\nSe crearon correctamente 500 personas")
-
-        #se imprimen las personas
-        '''
-        for persona in personas:
-            print(f"{persona.id} ~ {persona.nombre} - {persona.apellido}~ {persona.estado}")
-           '''
         return personas
 
     def infectar_aleatoriamente(self, num_personas, personas):
@@ -38,4 +30,3 @@ class Comunidad:
     def crear_comunidad_dia(self, num_personas):
         return random.sample(self.personas, num_personas)
     
-#talca = Comunidad("enfermedad")
