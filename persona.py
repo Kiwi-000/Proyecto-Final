@@ -6,7 +6,7 @@ class Persona:
         self.nombre = nombre
         self.apellido = apellido
         self.estado = estado
-        self.contador = 0
+        self.contador = 0 # dias que paso la persona infectada 
 
     # get
     def get_id(self):
