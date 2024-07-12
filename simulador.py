@@ -8,32 +8,31 @@ class Simulador:
         self.num_dias = num_dias 
         self.comunidad = Comunidad(enfermedad) 
         self.enfermedad = enfermedad
-        self.resultados = [] 
 
     #Ejecutar la simulacion de propagacion 
     def ejecutar_simulacion(self):
 
         for dia in range(1, self.num_dias):
-            comunidad_dia = self.comunidad.crear_comunidad_dia(50) #Crear sub comunidades
+            comunidad_dia = self.comunidad.crear_comunidad_dia(30) #Crear sub comunidades
 
             #Funciones que deben iterar sobre cada dia
-            self.propagacion_enfermedad(comunidad_dia)
-            self.recuperar_persona(self.comunidad.personas)
+            self.propagacion_enfermedad(comunidad_dia) #solo sobre comunidad_dia
+            self.recuperar_persona(self.comunidad.personas) #sobre toda la comunidad
             self.guardar_comunidad(dia, self.comunidad.personas)
 
+            #agrega los dias infectado a contador
             for persona in self.comunidad.personas:
                 if persona.estado == "i":
-                    persona.contador += 1
+                    persona.contador += 1 
 
-        print("\n Datos finales de la simulacion\n")
+        print("\n Datos finales de la simulacion\n") # Imprime como quedo la comunidad total luego de terminar la simulacion 
     
         for persona in self.comunidad.personas:
-            print(f"{persona.id} ~ {persona.nombre} ~ {persona.estado} ~ {persona.contador}")
+            print(f"{persona.id} ~ {persona.estado} ~ {persona.contador} ~ {persona.nombre}")
 
         self.calcular_suceptibles_totales()
         self.calcular_infectados_totales()
         self.calcular_recuperados_totales()
-
 
 
     #Propagar enfermedad en la comunidad del dia
